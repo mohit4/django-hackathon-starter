@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-body">
+                <h5 class="card-title">{{ entity.title }}</h5>
+                <p class="card-text">{{ entity.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contents %}
