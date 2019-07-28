@@ -21,13 +21,13 @@
                 <li class="list-group-item">Vestibulum at eros</li>
             </ul>
         </div>
-        <div class="col-md-6 my-2 py-2">
+        <div class="col-md-6">
             {% for entity in entities %}
-                <div class="card">
+                <div class="card mb-2">
                     <div class="card-body">
                         <h5 class="card-title">{{ entity.title }}</h5>
                         <p class="card-text">{{ entity.description }}</p>
-                        <a href="#" class="btn btn-primary">Check Out</a>
+                        <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
                     </div>
                 </div>
             {% endfor %}

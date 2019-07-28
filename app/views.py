@@ -14,7 +14,7 @@ class IndexView(ListView):
     Listing all the entities
     '''
     template_name = 'app/index.html'
-    context_object_name = 'entity'
+    context_object_name = 'entities'
     model = Entity
 
 class EntityListView(ListView):
@@ -22,7 +22,7 @@ class EntityListView(ListView):
     Listing all the entities
     '''
     template_name = 'app/entity_list.html'
-    context_object_name = 'entity'
+    context_object_name = 'entities'
     model = Entity
 
 class EntityDetailView(DetailView):

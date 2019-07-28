@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for entity in entities %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ entity.title }}</h5>
+                        <p class="card-text">{{ entity.description }}</p>
+                        <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock contents %}
