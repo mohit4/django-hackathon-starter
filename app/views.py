@@ -4,10 +4,19 @@ from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import UpdateView
+from django.views.generic import TemplateView
 
 from .models import Entity
 
 # Create your views here.
+class IndexView(ListView):
+    '''
+    Listing all the entities
+    '''
+    template_name = 'app/index.html'
+    context_object_name = 'entity'
+    model = Entity
+
 class EntityListView(ListView):
     '''
     Listing all the entities
