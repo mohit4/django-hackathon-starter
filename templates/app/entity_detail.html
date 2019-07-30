@@ -5,10 +5,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="card my-2">
+            <div class="card m-4 p-4 shadow bg-white rounded">
                 <div class="card-body">
-                    <h5 class="card-title">{{ entity.title }}</h5>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3 class="card-title">{{ entity.title }}</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Options
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-primary" href="#"><i class="fas fa-pen"></i> Edit</a>
+                                <a class="dropdown-item text-danger" href="#"><i class="fas fa-times-circle"></i> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if entity.active %}
+                        <p class="text-success">Verified</p>
+                    {% endif %}
+                    <small>{{ entity.created_on }} by {{ entity.user.username }}</small>
+                    <hr>
+                    <h4>{{ entity.category }}</h4>
+                    <h1>$ {{ entity.cost }}</h1>
+                    <strong class="text-warning"><i class="fas fa-coins"></i> {{ entity.points }} points</strong>
+                    <hr>
                     <p class="card-text">{{ entity.description }}</p>
+                    <strong><i class="fas fa-envelope"></i> {{ entity.email }}</strong>
                 </div>
             </div>
         </div>
