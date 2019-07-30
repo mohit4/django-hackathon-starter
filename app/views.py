@@ -16,6 +16,7 @@ class IndexView(ListView):
     template_name = 'app/index.html'
     context_object_name = 'entities'
     model = Entity
+    paginate_by = 5
 
 class EntityListView(ListView):
     '''
@@ -24,6 +25,7 @@ class EntityListView(ListView):
     template_name = 'app/entity_list.html'
     context_object_name = 'entities'
     model = Entity
+    paginate_by = 5
 
 class EntityDetailView(DetailView):
     '''
