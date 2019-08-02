@@ -2,4 +2,17 @@
 
 {% block contents %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a class="btn btn-danger" href="{% url 'app:index' %}" >Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock contents %}

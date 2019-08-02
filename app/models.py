@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.urls import reverse
+
 # Create your models here.
 class Entity(models.Model):
     """
@@ -27,6 +29,9 @@ class Entity(models.Model):
 
     def __str__(self):
         return str(self.id)+"#"+self.title[:10]+"..."
+    
+    def get_absolute_url(self):
+        return reverse("app:entity-detail", kwargs={"pk": self.pk})
 
 class Comment(models.Model):
     """
