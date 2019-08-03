@@ -16,7 +16,7 @@
                                 Options
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow-sm bg-white rounded" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-primary" href="#"><i class="fas fa-pen"></i> Edit</a>
+                                <a class="dropdown-item text-primary" href="{% url 'app:entity-update' pk=entity.pk %}"><i class="fas fa-pen"></i> Edit</a>
                                 <a class="dropdown-item text-danger" href="#"><i class="fas fa-times-circle"></i> Delete</a>
                             </div>
                         </div>
