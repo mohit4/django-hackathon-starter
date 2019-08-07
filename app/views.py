@@ -5,6 +5,7 @@ from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import UpdateView
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 
 from .models import Entity
 
@@ -50,3 +51,11 @@ class EntityUpdateView(UpdateView):
     template_name = 'app/entity_form.html'
     fields = ('title','description','points','cost','category','active','email')
     model = Entity
+
+class EntityDeleteView(DeleteView):
+    '''
+    Deleting an entity
+    '''
+    model = Entity
+    success_url = reverse_lazy('app:index')
+    template_name = 'app/entity_detail.html'
