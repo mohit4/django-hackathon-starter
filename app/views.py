@@ -43,9 +43,15 @@ class EntityCreateView(SuccessMessageMixin, CreateView):
     Creating an entity
     '''
     template_name = 'app/entity_form.html'
-    fields = ('title','description','points','cost','category','active','email','user')
+    fields = ('title','description','points','cost','category','active','email')
     model = Entity
     success_message = "New entity created!"
+
+    def form_valid(self, form):
+        model = form.save(commit=False)
+        model.user = self.request.user
+        model.save()
+        return super(EntityCreateView, self).form_valid(form)
 
 class EntityUpdateView(SuccessMessageMixin, UpdateView):
     '''

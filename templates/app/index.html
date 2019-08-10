@@ -71,6 +71,7 @@
                             <div class="card mb-2 shadow-sm bg-white rounded">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ entity.title }}</h5>
+                                    <small><em>by {{ entity.user.username }}</em></small>
                                     <p class="card-text">{{ entity.description }}</p>
                                     <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
                                 </div>
