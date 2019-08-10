@@ -7,13 +7,12 @@
 <div class="container">
     <div class="row my-4">
         <div class="col-md-12">
-            <h3>Enter login credentials</h3>
+            <h3>Create new user</h3>
             <form method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">Login</button>
-                <br>
-                <a href="{% url 'account:register' %}" class="badge badge-secondary">Not registered? Click here</a>
+                <button type="submit" class="btn btn-primary">SignUp</button>
+                <a href="{% url 'account:login' %}" class="btn btn-secondary">Login</a>
             </form>
         </div>
     </div>
