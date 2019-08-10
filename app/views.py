@@ -6,6 +6,8 @@ from django.views.generic import DeleteView
 from django.views.generic import UpdateView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 from .models import Entity
 
@@ -36,21 +38,23 @@ class EntityDetailView(DetailView):
     context_object_name = 'entity'
     model = Entity
 
-class EntityCreateView(CreateView):
+class EntityCreateView(SuccessMessageMixin, CreateView):
     '''
     Creating an entity
     '''
     template_name = 'app/entity_form.html'
     fields = ('title','description','points','cost','category','active','email','user')
     model = Entity
+    success_message = "New entity created!"
 
-class EntityUpdateView(UpdateView):
+class EntityUpdateView(SuccessMessageMixin, UpdateView):
     '''
     Updating an entity
     '''
     template_name = 'app/entity_form.html'
     fields = ('title','description','points','cost','category','active','email')
     model = Entity
+    success_message = "Entity updated successfully!"
 
 class EntityDeleteView(DeleteView):
     '''
@@ -59,3 +63,8 @@ class EntityDeleteView(DeleteView):
     model = Entity
     success_url = reverse_lazy('app:index')
     template_name = 'app/entity_detail.html'
+    success_message = "Entity deleted successfully!"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(EntityDeleteView, self).delete(request, *args, **kwargs)
