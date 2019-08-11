@@ -8,11 +8,12 @@ from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Entity
 
 # Create your views here.
-class IndexView(ListView):
+class IndexView(LoginRequiredMixin, ListView):
     '''
     Listing all the entities
     '''
@@ -21,7 +22,7 @@ class IndexView(ListView):
     model = Entity
     paginate_by = 5
 
-class EntityListView(ListView):
+class EntityListView(LoginRequiredMixin, ListView):
     '''
     Listing all the entities
     '''
@@ -30,7 +31,7 @@ class EntityListView(ListView):
     model = Entity
     paginate_by = 5
 
-class EntityDetailView(DetailView):
+class EntityDetailView(LoginRequiredMixin, DetailView):
     '''
     Detail view of a single entity
     '''
@@ -38,7 +39,7 @@ class EntityDetailView(DetailView):
     context_object_name = 'entity'
     model = Entity
 
-class EntityCreateView(SuccessMessageMixin, CreateView):
+class EntityCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     '''
     Creating an entity
     '''
@@ -48,12 +49,15 @@ class EntityCreateView(SuccessMessageMixin, CreateView):
     success_message = "New entity created!"
 
     def form_valid(self, form):
+        '''
+        Beforing saving, assign the user id to entity
+        '''
         model = form.save(commit=False)
         model.user = self.request.user
         model.save()
         return super(EntityCreateView, self).form_valid(form)
 
-class EntityUpdateView(SuccessMessageMixin, UpdateView):
+class EntityUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     '''
     Updating an entity
     '''
@@ -62,7 +66,7 @@ class EntityUpdateView(SuccessMessageMixin, UpdateView):
     model = Entity
     success_message = "Entity updated successfully!"
 
-class EntityDeleteView(DeleteView):
+class EntityDeleteView(LoginRequiredMixin, DeleteView):
     '''
     Deleting an entity
     '''
