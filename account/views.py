@@ -4,8 +4,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 
 from .forms import UserRegisterForm
+from .models import Profile
 
-# Create your views here.
+# Creating a new user
 class UserRegisterView(CreateView):
     '''
     New user register view
