@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.views.generic import CreateView
+from django.views.generic import DetailView
 
 from .forms import UserRegisterForm
 from .models import Profile
@@ -22,3 +23,10 @@ class UserLoginView(LoginView):
     '''
     template_name = 'account/login.html'
     redirect_authenticated_user = True
+
+class UserProfileView(DetailView):
+    '''
+    View details of user profile
+    '''
+    model = Profile
+    template_name = 'account/user_profile.html'
