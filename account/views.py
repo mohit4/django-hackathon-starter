@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 
 from .forms import UserRegisterForm
 from .models import Profile
+from app.models import Entity
 
 # Creating a new user
 class UserRegisterView(CreateView):
@@ -30,3 +31,10 @@ class UserProfileView(DetailView):
     '''
     model = Profile
     template_name = 'account/user_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        curr_user = self.object.user
+        context["entity_count"] = len(Entity.objects.filter(user=curr_user))
+        return context
+    

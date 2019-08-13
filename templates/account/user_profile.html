@@ -7,12 +7,13 @@
         <div class="col-md-12">
             <div class="card my-4">
                 <div class="card-body">
-                    <h2 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+                    <h1>{{ entity_count }} entities</h1>
+                    <h3 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
                     <h4 class="card-subtitle mb-2 text-muted">@{{ profile.user.username }}</h4>
-                    <p class="lead">{{ profile.bio }} Lorem ipsum dolar sit amet </p>
-                    <p class="card-text">{{ profile.website }} www.github.com</p>
-                    <p class="card-text">{{ profile.user.email }}</p>
-                    <address>{{ profile.address }} Lorem ipsum dolar sit amet</address>
+                    <p class="lead">{{ profile.bio }}</p>
+                    <p class="card-text"><i class="fas fa-link"></i> {{ profile.website }}
+                    <br><i class="far fa-envelope-open"></i> {{ profile.user.email }}
+                    <br><i class="fas fa-map-marker-alt"></i> {{ profile.address }}</p>
                 </div>
             </div>
         </div>

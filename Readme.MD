@@ -5,7 +5,7 @@
 Django Hackathon Starter packs the essentials required for a basic Django Web Application to run.
 The provided code is well documented and will help any developer getting started with Django Web App development with ease.
 
-DHS Packs the below functionalities :
+DHS Packs the below **features** :
 * User registration and authentication
 * All working CRUD views
 * Responsive interface with django messages
@@ -17,7 +17,7 @@ The application can be extended into anything, A Blog, A social media app, A e-c
 ## Technology Stack
 
 1. Python 3.7
-2. Django 2.0
+2. Django 2.2
 3. Bootstrap 4
 
 ## Additional Links
