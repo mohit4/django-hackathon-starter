@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block contents %}
 
 <div class="jumbotron">
@@ -68,14 +70,21 @@
                 <div class="row">
                     <div class="col-md-12">
                         {% for entity in entities %}
-                            <div class="card mb-2 shadow-sm bg-white rounded">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ entity.title }}</h5>
-                                    <small><em>by {{ entity.user.username }}</em></small>
-                                    <p class="card-text">{{ entity.description }}</p>
-                                    <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="{% static 'img/app/flute.jpg' %}" class="card-img" alt="Krishna Flute">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ entity.title }}</h5>
+                                        <small><em>by {{ entity.user.username }}</em></small>
+                                        <p class="card-text">{{ entity.description }}</p>
+                                        <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
