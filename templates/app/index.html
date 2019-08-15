@@ -4,12 +4,12 @@
 
 {% block contents %}
 
-<div class="jumbotron">
+<div class="jumbotron" style="color: white; background-image: url({% static 'img/home/wall.jpg' %}); background-size: cover;">
   <h1 class="display-4">Hello, {{user.username}}!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p class="lead">Welcome to Django Hackathon Starter project. Hope you are having a good time. You can start modifying this template project and make your own applications.</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  <p>Thanks for using the application. To find out more, click the button below.</p>
+  <a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/mohit4/django-hackathon-starter" role="button">Learn more</a>
 </div>
 
 <div class="container">
