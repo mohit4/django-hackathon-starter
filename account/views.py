@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.views.generic import CreateView
 from django.views.generic import DetailView
+from django.views.generic import UpdateView
 
 from .forms import UserRegisterForm
 from .models import Profile
@@ -37,4 +38,12 @@ class UserProfileView(DetailView):
         curr_user = self.object.user
         context["entity_count"] = len(Entity.objects.filter(user=curr_user))
         return context
-    
+
+class ProfileUpdateView(UpdateView):
+    '''
+    Updating a user profile
+    '''
+    model = Profile
+    template_name = 'account/profile_form.html'
+    fields = ('website','bio','address','phone_no','profile_pic')
+    success_message = "Profile updated successfully!"
