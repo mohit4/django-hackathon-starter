@@ -25,6 +25,9 @@ class Entity(models.Model):
     active = models.BooleanField(default=False)
     email = models.EmailField(max_length=100)
 
+    profile_image = models.ImageField(upload_to="entity/", default="default_profile.jpg")
+    cover_image = models.ImageField(upload_to="entity/", default="default_cover.jpg")
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

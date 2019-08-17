@@ -44,7 +44,7 @@ class EntityCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     Creating an entity
     '''
     template_name = 'app/entity_form.html'
-    fields = ('title','description','points','cost','category','active','email')
+    fields = ('title','description','points','cost','category','active','email', 'profile_image', 'cover_image')
     model = Entity
     success_message = "New entity created!"
 
@@ -62,7 +62,7 @@ class EntityUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     Updating an entity
     '''
     template_name = 'app/entity_form.html'
-    fields = ('title','description','points','cost','category','active','email')
+    fields = ('title','description','points','cost','category','active','email', 'profile_image', 'cover_image')
     model = Entity
     success_message = "Entity updated successfully!"
 

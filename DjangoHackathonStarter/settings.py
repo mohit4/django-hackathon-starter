@@ -126,14 +126,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# Parameters for static file handling
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# Parameters for login and authentications
 LOGIN_REDIRECT_URL = 'home/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Parameters for defining Bootstrap message classes against each type of message constraints
 MESSAGE_TAGS = {
     messages.DEBUG : 'alert-info',
     messages.INFO : 'alert-info',
@@ -141,3 +144,7 @@ MESSAGE_TAGS = {
     messages.WARNING : 'alert-warning',
     messages.ERROR : 'alert-danger'
 }
+
+# Parameters added to handle the images/media uploaded
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
