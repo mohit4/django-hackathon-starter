@@ -5,7 +5,7 @@
 {% block contents %}
 
 <div class="jumbotron" style="color: white; background-image: url({% static 'img/home/wall.jpg' %}); background-size: cover;">
-  <h1 class="display-4">Hello, {{user.username}}!</h1>
+  <h1 class="display-4">Hello, {{user.profile.first_name }} {{ user.profile.last_name }}</h1>
   <p class="lead">Welcome to Django Hackathon Starter project. Hope you are having a good time. You can start modifying this template project and make your own applications.</p>
   <hr class="my-4">
   <p>Thanks for using the application. To find out more, click the button below.</p>

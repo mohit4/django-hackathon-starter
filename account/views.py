@@ -45,5 +45,5 @@ class ProfileUpdateView(UpdateView):
     '''
     model = Profile
     template_name = 'account/profile_form.html'
-    fields = ('website','bio','address','phone_no','profile_pic')
+    fields = ('first_name','last_name','email','website','bio','address','phone_no','profile_pic')
     success_message = "Profile updated successfully!"

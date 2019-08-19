@@ -14,6 +14,9 @@ class Profile(models.Model):
     bio = models.TextField(null=True)
     address = models.TextField(null=True)
     phone_no = models.CharField(max_length=12, null=True)
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
 
     profile_pic = models.ImageField(upload_to="user/", default="default_user_profile.jpg")
 
@@ -31,4 +34,4 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(user=instance,first_name=instance.first_name,last_name=instance.last_name,email=instance.email)

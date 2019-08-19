@@ -15,11 +15,11 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h1>{{ entity_count }} entities</h1>
-                            <h3 class="card-title">{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
-                            <h4 class="card-subtitle mb-2 text-muted">@{{ profile.user.username }}</h4>
+                            <h3 class="card-title">{{ profile.first_name }} {{ profile.last_name }}</h3>
+                            <a target="blank_" href="{{ profile.website }}" style="text-decoration:None;"><h4 class="card-subtitle mb-2 text-muted">@{{ profile.user.username }}</h4></a>
                             <p class="lead">{{ profile.bio }}</p>
-                            <p class="card-text"><i class="fas fa-link"></i> {{ profile.website }}
-                            <br><i class="far fa-envelope-open"></i> {{ profile.user.email }}
+                            <p><i class="fas fa-phone-alt"></i> {{ profile.phone_no }}
+                            <br><i class="far fa-envelope-open"></i> {{ profile.email }}
                             <br><i class="fas fa-map-marker-alt"></i> {{ profile.address }}</p>
                             <a class="btn btn-primary" href="{% url 'account:edit-profile' pk=profile.pk %}"><i class="fas fa-edit"></i> Edit profile</a>
                         </div>
