@@ -50,7 +50,7 @@
                     <div class="card my-2">
                       <div class="card-body">
                         <h5 class="card-title">{{ comment.user.profile.first_name }} {{ comment.user.profile.last_name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.user.username }} | {{ comment.created_on|naturaltime }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><a href="{% url 'account:user-profile' pk=comment.user.profile.pk %}">@{{ comment.user.username }}</a> | {{ comment.created_on|naturaltime }}</h6>
                         <p class="card-text">{{ comment.title }}</p>
                       </div>
                     </div>
