@@ -9,8 +9,12 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+
+from .forms import CommentForm
 
 from .models import Entity
+from .models import Comment
 
 # Create your views here.
 class IndexView(LoginRequiredMixin, ListView):
@@ -38,6 +42,12 @@ class EntityDetailView(LoginRequiredMixin, DetailView):
     template_name = 'app/entity_detail.html'
     context_object_name = 'entity'
     model = Entity
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comments"] = Comment.objects.filter(entity=self.object)
+        context["form"] = CommentForm
+        return context
 
 class EntityCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     '''
@@ -78,3 +88,30 @@ class EntityDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(EntityDeleteView, self).delete(request, *args, **kwargs)
+
+class AddCommentView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    '''
+    Add a comment
+    '''
+    model = Comment
+    success_message = 'Comment added!'
+    fields = ('title',)
+    template_name = 'app/entity_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        '''
+        Overridden, in order to make the entity object exist
+        before we go any further
+        '''
+        self.entity = get_object_or_404(Entity, pk=kwargs['pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        '''
+        Beforing saving, assign the user and entity to comment
+        '''
+        model = form.save(commit=False)
+        model.user = self.request.user
+        model.entity = self.entity
+        model.save()
+        return super(AddCommentView, self).form_valid(form)

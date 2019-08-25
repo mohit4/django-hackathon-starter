@@ -28,7 +28,7 @@ class Entity(models.Model):
     profile_image = models.ImageField(upload_to="entity/", default="default_profile.jpg")
     cover_image = models.ImageField(upload_to="entity/", default="default_cover.jpg")
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='entities')
 
     def __str__(self):
         return str(self.id)+"#"+self.title[:10]+"..."
@@ -42,8 +42,12 @@ class Comment(models.Model):
     """
     title = models.TextField(max_length=500)
 
-    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    entity = models.ForeignKey(Entity, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)+"#"+str(self.user.id)+"#"+str(self.entity.id)
+    
+    def get_absolute_url(self):
+        return reverse("app:entity-detail", kwargs={"pk": self.entity.pk})

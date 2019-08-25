@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block contents %}
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="card m-4 shadow bg-white rounded">
+            <div class="card my-4 shadow bg-white rounded">
                 <img src="{{ entity.cover_image.url }}" class="card-img-top" alt="Aurora Cover">
                 <div class="card-body p-4">
                     <div class="row">
@@ -20,7 +21,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow-sm bg-white rounded" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item text-primary" href="{% url 'app:entity-update' pk=entity.pk %}"><i class="fas fa-pen"></i> Edit</a>
-                                <a class="dropdown-item text-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-times-circle"></i> Delete</a>
+                                <a class="dropdown-item text-danger" data-toggle="modal" data-target="#deleteEntityModal"><i class="fas fa-times-circle"></i> Delete</a>
                             </div>
                         </div>
                     </div>
@@ -37,16 +38,36 @@
                     <strong><i class="fas fa-envelope"></i> {{ entity.email }}</strong>
                 </div>
             </div>
+
+            <div class="container">
+              <div class="row my-4">
+                <div class="col-md-12">
+                  <a class="btn btn-primary text-white" data-toggle="modal" data-target="#AddCommentModal">Add a comment</a>
+                  <hr>
+                  {% for comment in comments %}
+                    <div class="card my-2">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ comment.user.profile.first_name }} {{ comment.user.profile.last_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.user.username }} | {{ comment.created_on }}</h6>
+                        <p class="card-text">{{ comment.title }}</p>
+                      </div>
+                    </div>
+                  {% empty %}
+                    No comments
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteEntityModal" tabindex="-1" role="dialog" aria-labelledby="deleteEntityModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <h5 class="modal-title" id="deleteEntityModalLabel">Are you sure ?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -60,6 +81,27 @@
             <input class="btn btn-danger text-white" type="submit" value="Yes, remove">
         </form>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">No, cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog" aria-labelledby="AddCommentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AddCommentModalLabel">Add Comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="{% url 'app:entity-add-comment' pk=entity.pk %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-danger text-white" type="submit" value="Comment">
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
       </div>
     </div>
   </div>
