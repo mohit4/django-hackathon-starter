@@ -45,7 +45,7 @@ class EntityDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comment.objects.filter(entity=self.object)
+        context["comments"] = Comment.objects.filter(entity=self.object).order_by('-created_on')
         context["form"] = CommentForm
         return context
 
