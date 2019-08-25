@@ -54,8 +54,6 @@
                         <p class="card-text">{{ comment.title }}</p>
                       </div>
                     </div>
-                  {% empty %}
-                    No comments
                   {% endfor %}
                 </div>
               </div>
@@ -97,13 +95,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-footer">
+      <div class="modal-body">
         <form method="post" action="{% url 'app:entity-add-comment' pk=entity.pk %}">
             {% csrf_token %}
             {{ form|crispy }}
             <input class="btn btn-danger text-white" type="submit" value="Comment">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
       </div>
     </div>
   </div>
