@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 {% block contents %}
 
@@ -48,7 +49,7 @@
                     <div class="card my-2">
                       <div class="card-body">
                         <h5 class="card-title">{{ comment.user.profile.first_name }} {{ comment.user.profile.last_name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.user.username }} | {{ comment.created_on }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ comment.user.username }} | {{ comment.created_on|naturaltime }}</h6>
                         <p class="card-text">{{ comment.title }}</p>
                       </div>
                     </div>
