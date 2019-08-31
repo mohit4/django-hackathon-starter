@@ -78,7 +78,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ entity.title }}</h5>
-                                        <small><em>by {{ entity.user.username }}</em></small>
+                                        <small><em>by <a href="{% url 'account:user-profile' pk=entity.user.pk %}">{{ entity.user.username }}</a></em></small>
                                         <p class="card-text">{{ entity.description }}</p>
                                         <a href="{% url 'app:entity-detail' pk=entity.pk %}" class="btn btn-primary">Check Out</a>
                                     </div>
