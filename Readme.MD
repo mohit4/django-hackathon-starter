@@ -1,5 +1,7 @@
 # Django Hackathon Starter (DHS)
 
+![](dhs_img.png)
+
 ## Introduction
 
 Django Hackathon Starter packs the essentials required for a basic Django Web Application to run.
@@ -13,6 +15,48 @@ DHS Packs the below **features** :
 * _populate.py_ - Powered by Python Faker, used to populate random data in DB.
 
 The application can be extended into anything, A Blog, A social media app, A e-commerce web app etc.
+
+## Getting Started
+
+Make sure you have Python 3 installed on your machine.
+If not please install python first. [Click here for python official page.](https://www.python.org/downloads/)
+
+1. Clone the repository on your machine.
+
+```git clone https://github.com/mohit4/django-hackathon-starter.git```
+
+2. Create virtual environment and install all requirements or just install the requirements directly.
+
+```pip install -r requirements.txt```
+
+or
+
+```virtualenv myproject```
+```myproject\Scripts\activate```
+```pip install -r requirements.txt```
+
+3. Run setup.py to rename your project
+
+```python setup.py < YOUR_PROJECT_NAME >```
+
+4. Create migrations and apply
+
+```python manage.py makemigrations```
+```python manage.py migrate```
+
+5. Create a superuser, provide the details when prompt
+
+```python manage.py createsuperuser```
+
+6. Run population script, you can skip this step if you do not want dummy data to be populated
+
+```python populate.py < NO_OF_ENTRIES >```
+
+7. Now everything is done, start the application and type localhost:8000/ in your browser to see the application running
+
+```python manage.py runserver```
+
+Hurray, your project is running and you are way ahead of your competitors, start modifying the already provided templates and code files to customize your project. Best of luck from DHS Team.
 
 ## Technology Stack
 
