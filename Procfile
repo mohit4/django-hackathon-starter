@@ -1,1 +1,0 @@
-web: gunicorn DjangoHackathonStarter.wsgi --log-file -
