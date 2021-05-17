@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
@@ -24,5 +24,5 @@ class LoginFormView(SuccessMessageMixin, LoginView):
     View for logging in to the system
     """
     template_name = 'registration/login.html'
-    success_url = '/'
+    success_url = ''
     success_message = 'Logged in successfully!'
