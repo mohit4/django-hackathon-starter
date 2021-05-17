@@ -1,6 +1,6 @@
 # Django Hackathon Starter (DHS)
 
-![](dhs_img.png)
+![](dhs-img.jpg)
 
 ## Introduction
 
