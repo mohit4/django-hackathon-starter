@@ -2,4 +2,12 @@
 
 {% block contents %}
 
+<h3>Listing all object(s)</h3>
+
+<ul class="list-group">
+    {% for object in objects %}
+        <li class="list-group-item">{{ object.title }}</li>
+    {% endfor %}
+</ul>
+
 {% endblock contents %}
