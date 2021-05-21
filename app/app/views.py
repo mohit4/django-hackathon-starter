@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls.base import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -17,7 +18,7 @@ class ObjectCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Create new Object"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class ObjectUpdateView(UpdateView):
@@ -31,7 +32,7 @@ class ObjectUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Update Object"
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class ObjectListView(ListView):
@@ -56,4 +57,7 @@ class ObjectDeleteView(DeleteView):
     """
     Deleting an existing object
     """
-    pass
+    template_name = "app/object_detail.html"
+    model = Object
+    context_object_name = "object"
+    success_url = reverse_lazy("app:object-list")

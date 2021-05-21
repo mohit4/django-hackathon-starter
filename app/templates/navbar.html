@@ -10,7 +10,7 @@
         <a class="nav-link" href="#">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Objects</a>
+        <a class="nav-link" href="{% url 'app:object-list' %}">Objects</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -24,6 +24,8 @@
             Guest
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'app:object-create' %}">New Object</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Profile</a>
             <a class="dropdown-item" href="#">Settings</a>
             <div class="dropdown-divider"></div>

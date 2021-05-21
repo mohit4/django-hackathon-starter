@@ -2,12 +2,16 @@
 
 {% block contents %}
 
-<h3>Listing all object(s)</h3>
+<div class="col-12">
 
-<ul class="list-group">
-    {% for object in objects %}
-        <li class="list-group-item">{{ object.title }}</li>
-    {% endfor %}
-</ul>
+    <h3>Listing all object(s)</h3>
+    <hr>
+    <ul class="list-group">
+        {% for object in objects %}
+            <a href="{% url 'app:object-detail' pk=object.pk %}" class="list-group-item list-group-item-action">{{ object.title }}</a>
+        {% endfor %}
+    </ul>
+
+</div>
 
 {% endblock contents %}
