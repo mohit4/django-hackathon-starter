@@ -22,7 +22,12 @@ def index(request):
     else:
         objects = Object.objects.all().order_by("-title")
     
-    return render(request, "app/object_list.html", {'objects':objects})
+    context = {
+        'objects': objects,
+        'heading': f'Showing search results for : "{search_object}"'
+    }
+
+    return render(request, "app/object_list.html", context)
 
 
 class ObjectCreateView(CreateView):
@@ -60,6 +65,11 @@ class ObjectListView(ListView):
     template_name = "app/object_list.html"
     model = Object
     context_object_name = "objects"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["heading"] = "Listing all object(s)"
+        return context
 
 
 class ObjectDetailView(DetailView):
