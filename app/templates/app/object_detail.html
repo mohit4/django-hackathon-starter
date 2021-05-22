@@ -5,9 +5,9 @@
 <div class="col-12">
 
     <h3>{{ object.title }}</h3>
-    <a class="badge badge-primary" href="{% url 'app:object-update' pk=object.pk %}">edit</a>
-    <a class="badge badge-danger" href="" data-toggle="modal" data-target="#exampleModal">delete</a>
-    <a class="badge badge-warning" href="{% url 'app:object-list' %}">back to listing</a>
+    <a class="btn btn-primary btn-sm" href="{% url 'app:object-update' pk=object.pk %}"><i class="fas fa-edit"></i> Edit</a>
+    <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i> delete</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'app:object-list' %}"><i class="fas fa-angle-double-left"></i> back to listing</a>
     <hr>
     {{ object.description }}
 

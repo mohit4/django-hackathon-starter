@@ -4,11 +4,14 @@
 
 <div class="col-12">
 
-    <h3>Listing all object(s)</h3>
+    <h3>{{ heading }}</h3>
+    Total items : {{ objects|length }}
     <hr>
     <ul class="list-group">
         {% for object in objects %}
-            <a href="{% url 'app:object-detail' pk=object.pk %}" class="list-group-item list-group-item-action">{{ object.title }}</a>
+            <a href="{% url 'app:object-detail' pk=object.pk %}" class="list-group-item list-group-item-action"><i class="fas fa-cube"></i> {{ object.title }}</a>
+        {% empty %}
+        No items
         {% endfor %}
     </ul>
 
