@@ -3,8 +3,26 @@ from django.urls.base import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.db.models import Q
 
 from .models import Object
+
+
+def index(request):
+    """
+    Index view for listing the search results
+    """
+    search_object = request.GET.get('search')
+
+    if search_object:
+        objects = Object.objects.filter(
+            Q(title__icontains=search_object)
+            | Q(description__icontains=search_object)
+        )
+    else:
+        objects = Object.objects.all().order_by("-title")
+    
+    return render(request, "app/object_list.html", {'objects':objects})
 
 
 class ObjectCreateView(CreateView):

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import ObjectCreateView, ObjectUpdateView, ObjectListView, ObjectDetailView, ObjectDeleteView
+from .views import index
 
 app_name = 'app'
 
@@ -10,4 +11,5 @@ urlpatterns = [
     path('object/create/', ObjectCreateView.as_view(), name='object-create' ),
     path('object/<int:pk>/update/', ObjectUpdateView.as_view(), name='object-update' ),
     path('object/<int:pk>/delete/', ObjectDeleteView.as_view(), name='object-delete' ),
+    path('object', index, name='object-search' ),
 ]
