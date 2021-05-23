@@ -17,8 +17,21 @@ class Object(TimeStampedModel):
     """
     Object model with all model fields
     """
+
+    CATEGORY_CHOICES = (
+        ( 'RND', 'Research & Development' ),
+        ( 'AUT', 'Automobile' ),
+        ( 'INF', 'Infrastructure' ),
+    )
+
     title = models.CharField(max_length=50, help_text="Title of the object")
     description = models.TextField(null=True, blank=True, help_text="Few words about the object")
+
+    credits = models.PositiveIntegerField(null=True, blank=True, help_text="Credits earned by object.")
+    value = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Value of one unit of object.")
+    category = models.CharField(max_length=3, choices=CATEGORY_CHOICES, null=True, blank=True, help_text="Category for the Object.")
+
+    weblink = models.URLField(max_length=200, null=True, blank=True, help_text="Online link for the Object.")
 
     def __str__(self):
         return self.title

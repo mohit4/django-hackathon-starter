@@ -39,7 +39,7 @@ class ObjectCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     template_name = "app/object_form.html"
     model = Object
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'credits', 'value', 'category', 'weblink',)
     success_message = 'Added new object!'
 
     login_url = '/'
@@ -56,7 +56,7 @@ class ObjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     template_name = "app/object_form.html"
     model = Object
-    fields = ('description',)
+    fields = ('description', 'credits', 'value', 'category', 'weblink',)
     success_message = 'Object updated!'
 
     login_url = '/'

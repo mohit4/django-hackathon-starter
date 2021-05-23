@@ -9,7 +9,33 @@
     <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i> delete</a>
     <a class="btn btn-warning btn-sm" href="{% url 'app:object-list' %}"><i class="fas fa-angle-double-left"></i> back to listing</a>
     <hr>
-    {{ object.description }}
+    <div class="container">
+      <div class="row my-4">
+        {{ object.description }}
+      </div>
+      <div class="row my-4">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">Credits</th>
+              <td><span style="color:#FF9C2A"><i class="fas fa-coins"></i></span> {{ object.credits }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Value</th>
+              <td><span style="color:#FF9C2A"><i class="fas fa-dollar-sign"></i></span> {{ object.value }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Category</th>
+              <td>{{ object.category }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Weblink</th>
+              <td><a target="_blank" href="{{ object.weblink }}">{{ object.weblink }}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 </div>
 
