@@ -18,8 +18,12 @@ The application can be extended into anything, A Blog, A social media app, A e-c
 
 ## Getting Started
 
-Make sure you have Python 3 installed on your machine.
-If not please install python first. [Click here for python official page.](https://www.python.org/downloads/)
+### Prerequisites
+
+Docker & Docker Compose should be installed on the system.
+[Click here for installation links.](https://docs.docker.com/compose/install/)
+
+### Setup
 
 1. Clone the repository on your machine.
 
@@ -27,58 +31,22 @@ If not please install python first. [Click here for python official page.](https
 git clone https://github.com/mohit4/django-hackathon-starter.git
 ```
 
-2. Create virtual environment and install all requirements or just install the requirements directly.
+2. Run the below command
 
 ```
-pip install -r requirements.txt
+docker-compose up
 ```
 
-or
-
-```
-virtualenv myproject
-myproject\Scripts\activate
-pip install -r requirements.txt
-```
-
-3. Run setup.py to rename your project
-
-```
-python setup.py < YOUR_PROJECT_NAME >
-```
-
-4. Create migrations and apply
-
-```
-python manage.py makemigrations
-python manage.py migrate
-```
-
-5. Create a superuser, provide the details when prompt
-
-```
-python manage.py createsuperuser
-```
-
-6. Run population script, you can skip this step if you do not want dummy data to be populated
-
-```
-python populate.py < NO_OF_ENTRIES >
-```
-
-7. Now everything is done, start the application and type localhost:8000/ in your browser to see the application running
-
-```
-python manage.py runserver
-```
+The application will be running on [localhost](http://localhost:8000/)
 
 Hurray, your project is running and you are way ahead of your competitors, start modifying the already provided templates and code files to customize your project. Best of luck from DHS Team.
 
 ## Technology Stack
 
-1. Python 3.7
-2. Django 2.2
-3. Bootstrap 4
+1. Python 3.9
+2. Django 3.1
+3. Bootstrap 4.5
+4. PostgreSQL
 
 ## Additional Links
 
