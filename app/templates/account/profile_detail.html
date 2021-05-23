@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="col-md-12">
+    <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+    <h6>@{{ profile.user.username }}</h6>
+    <a class="btn btn-primary btn-sm" href="{% url 'account:profile-update' pk=profile.pk %}"><i class="fas fa-edit"></i> Edit</a>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <h6>Bio</h6>
+            </div>
+            <div class="col-9">
+                <p>{{ profile.bio }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <h6>Website</h6>
+            </div>
+            <div class="col-9">
+                <p><a target="_blank" href="{{ profile.website }}">{{ profile.website }}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contents %}

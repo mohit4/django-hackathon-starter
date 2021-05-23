@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'app',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,6 @@ MESSAGE_TAGS = {
     messages.WARNING : 'alert-warning',
     messages.ERROR : 'alert-danger'
 }
+
+LOGIN_REDIRECT_URL = '/object/all/'
+LOGOUT_REDIRECT_URL = '/'
