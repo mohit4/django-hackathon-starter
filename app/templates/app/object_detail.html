@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="col-12">
+
+    <h3>{{ object.title }}</h3>
+    <a class="btn btn-primary btn-sm" href="{% url 'app:object-update' pk=object.pk %}"><i class="fas fa-edit"></i> Edit</a>
+    <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt"></i> delete</a>
+    <a class="btn btn-warning btn-sm" href="{% url 'app:object-list' %}"><i class="fas fa-angle-double-left"></i> back to listing</a>
+    <hr>
+    {{ object.description }}
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This will delete object : <strong>{{object.title}}</strong> and it will never be recovered.
+      </div>
+      <div class="modal-footer">
+        <form method="POST" action="{% url 'app:object-delete' pk=object.pk %}">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock contents %}

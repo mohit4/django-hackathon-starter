@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img src="{% static 'img/dhs-logo.png' %}" width="32" height="32" class="d-inline-block align-top" alt="" loading="lazy">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account:profile-list' %}">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'app:object-list' %}">Objects</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="{% url 'app:object-search' %}">
+        <input name="search" class="form-control mr-sm-2" type="search" placeholder="Enter query here" aria-label="Search">
+        <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Search</button>
+      </form>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <h4 class="dropdown-header">Signed in : {{ user.username }}</h4>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'app:object-create' %}"><i class="fas fa-plus-square"></i> New Object</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'account:profile-detail' pk=user.profile.pk %}"><i class="fas fa-user-circle"></i></i> Profile</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'account:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>

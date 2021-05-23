@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div class="col-md-12">
+    <h3>Enter login credentials</h3>
+    <a href="{% url 'account:register' %}">Register new user</a>
+    <hr>
+    {% include 'form.html' %}
+</div>
+
+{% endblock contents %}
