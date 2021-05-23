@@ -48,6 +48,10 @@ class ObjectCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Create new Object"
         return context
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class ObjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -65,6 +69,10 @@ class ObjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Update Object"
         return context
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class ObjectListView(LoginRequiredMixin, ListView):

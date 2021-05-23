@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class TimeStampedModel(models.Model):
@@ -32,6 +33,8 @@ class Object(TimeStampedModel):
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES, null=True, blank=True, help_text="Category for the Object.")
 
     weblink = models.URLField(max_length=200, null=True, blank=True, help_text="Online link for the Object.")
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="objects")
 
     def __str__(self):
         return self.title
