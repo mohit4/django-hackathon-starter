@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 from .models import Object
 
@@ -30,13 +32,14 @@ def index(request):
     return render(request, "app/object_list.html", context)
 
 
-class ObjectCreateView(CreateView):
+class ObjectCreateView(SuccessMessageMixin, CreateView):
     """
     Creating a new object
     """
     template_name = "app/object_form.html"
     model = Object
     fields = ('title', 'description',)
+    success_message = 'Added new object!'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -44,13 +47,14 @@ class ObjectCreateView(CreateView):
         return context
 
 
-class ObjectUpdateView(UpdateView):
+class ObjectUpdateView(SuccessMessageMixin, UpdateView):
     """
     Updating an existing object
     """
     template_name = "app/object_form.html"
     model = Object
     fields = ('description',)
+    success_message = 'Object updated!'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,3 +93,8 @@ class ObjectDeleteView(DeleteView):
     model = Object
     context_object_name = "object"
     success_url = reverse_lazy("app:object-list")
+    success_message = 'Object deleted!'
+
+    def delete(self, request, *args, **kwargs):
+        messages.error(self.request, self.success_message)
+        return super(ObjectDeleteView, self).delete(request, *args, **kwargs)
