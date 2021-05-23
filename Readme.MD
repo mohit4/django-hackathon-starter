@@ -12,7 +12,6 @@ DHS Packs the below **features** :
 * All working CRUD views
 * Responsive interface with django messages
 * Secured URLs with Login Required check
-* _populate.py_ - Powered by Python Faker, used to populate random data in DB.
 
 The application can be extended into anything, A Blog, A social media app, A e-commerce web app etc.
 
