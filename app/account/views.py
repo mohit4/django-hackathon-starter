@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -44,3 +45,12 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = Profile
     fields = ('bio', 'website',)
     success_message = 'Profile updated successfully!'
+
+
+class ProfileListView(ListView):
+    """
+    Listing all the users
+    """
+    template_name = 'account/profile_list.html'
+    model = Profile
+    context_object_name = 'profiles'

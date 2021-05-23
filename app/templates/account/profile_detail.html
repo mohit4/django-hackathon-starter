@@ -5,7 +5,9 @@
 <div class="col-md-12">
     <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
     <h6>@{{ profile.user.username }}</h6>
+    {% if user == profile.user %}
     <a class="btn btn-primary btn-sm" href="{% url 'account:profile-update' pk=profile.pk %}"><i class="fas fa-edit"></i> Edit</a>
+    {% endif %}
     <hr>
     <div class="container">
         <div class="row">

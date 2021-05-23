@@ -12,7 +12,7 @@
     {% if user.is_authenticated %}
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <a class="nav-link" href="{% url 'account:profile-list' %}">Users</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'app:object-list' %}">Objects</a>
