@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserRegistrationForm
 from .models import Profile
@@ -29,15 +30,17 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     success_message = 'Logged in successfully!'
 
 
-class ProfileDetailView(DetailView):
+class ProfileDetailView(LoginRequiredMixin, DetailView):
     """
     View for accessing a user profile details
     """
     template_name = 'account/profile_detail.html'
     model = Profile
 
+    login_url = '/'
 
-class ProfileUpdateView(SuccessMessageMixin, UpdateView):
+
+class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     View for updating a user profile details
     """
@@ -46,11 +49,15 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     fields = ('bio', 'website',)
     success_message = 'Profile updated successfully!'
 
+    login_url = '/'
 
-class ProfileListView(ListView):
+
+class ProfileListView(LoginRequiredMixin, ListView):
     """
     Listing all the users
     """
     template_name = 'account/profile_list.html'
     model = Profile
     context_object_name = 'profiles'
+
+    login_url = '/'

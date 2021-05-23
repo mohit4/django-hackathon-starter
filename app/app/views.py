@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Object
 
@@ -32,7 +33,7 @@ def index(request):
     return render(request, "app/object_list.html", context)
 
 
-class ObjectCreateView(SuccessMessageMixin, CreateView):
+class ObjectCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
     Creating a new object
     """
@@ -41,13 +42,15 @@ class ObjectCreateView(SuccessMessageMixin, CreateView):
     fields = ('title', 'description',)
     success_message = 'Added new object!'
 
+    login_url = '/'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Create new Object"
         return context
 
 
-class ObjectUpdateView(SuccessMessageMixin, UpdateView):
+class ObjectUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     """
     Updating an existing object
     """
@@ -56,13 +59,15 @@ class ObjectUpdateView(SuccessMessageMixin, UpdateView):
     fields = ('description',)
     success_message = 'Object updated!'
 
+    login_url = '/'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Update Object"
         return context
 
 
-class ObjectListView(ListView):
+class ObjectListView(LoginRequiredMixin, ListView):
     """
     Listing all the objects present in database
     """
@@ -70,13 +75,15 @@ class ObjectListView(ListView):
     model = Object
     context_object_name = "objects"
 
+    login_url = '/'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["heading"] = "Listing all object(s)"
         return context
 
 
-class ObjectDetailView(DetailView):
+class ObjectDetailView(LoginRequiredMixin, DetailView):
     """
     Printing details of a single object
     """
@@ -84,8 +91,10 @@ class ObjectDetailView(DetailView):
     model = Object
     context_object_name = "object"
 
+    login_url = '/'
 
-class ObjectDeleteView(DeleteView):
+
+class ObjectDeleteView(LoginRequiredMixin, DeleteView):
     """
     Deleting an existing object
     """
@@ -94,6 +103,8 @@ class ObjectDeleteView(DeleteView):
     context_object_name = "object"
     success_url = reverse_lazy("app:object-list")
     success_message = 'Object deleted!'
+
+    login_url = '/'
 
     def delete(self, request, *args, **kwargs):
         messages.error(self.request, self.success_message)
